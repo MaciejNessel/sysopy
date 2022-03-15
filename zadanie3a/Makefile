@@ -1,21 +1,34 @@
-all: static shared
+
+all: static shared dynamically_loaded clean
 
 static:
+	make clean
 	gcc -c -Wall btm.c
 	ar rcs libbtm.a btm.o
 	gcc -c -Wall main.c
 	gcc main.o libbtm.a -o main
-	echo "static" | tee raport2.txt
+	echo "static" | tee raport3a.txt
 	make tests
 
+
 shared:
+	make clean
 	gcc -Wall -fPIC -shared btm.c -o libbtm.so
 	gcc -Wall  main.c -L. -Wl,-rpath=. -lbtm -o main
-	echo "shared" | tee -a raport2.txt
+	echo "shared" | tee -a raport3a.txt
+	make tests
+
+
+dynamically_loaded:
+	make clean
+	gcc -Wall -fPIC -shared btm.c -o libbtm.so
+	gcc -Wall main_dynamic.c -ldl -o main
+	echo "dynamically_loaded" | tee -a raport3a.txt
 	make tests
 
 clean:
 	rm -f *.o *.a *.so main
+
 
 tests:
 	./main create_table 10 \

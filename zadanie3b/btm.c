@@ -19,6 +19,7 @@ struct block_array* create_table(int size){
     return result;
 }
 
+
 void wc_files(char* files){
     if(files==NULL){
         printf("Nie podano sciezek do plikow!\nNie dokonano zliczania.\n");
@@ -27,8 +28,11 @@ void wc_files(char* files){
     char* command = calloc(100, sizeof(char));
     strcat(command, "wc ");
     strcat(command, files);
-    strcat(command, "| tail -1 > ./temp ");
-    system(command);
+    strcat(command, "> ./temp ");
+    int systemRet = system(command);
+    if(systemRet == -1){
+        printf("System method failed");
+    }
     free(command);
 }
 
@@ -39,7 +43,7 @@ char* load_from_tmp(){
 
     if (f == NULL){
         printf("Nie mozna otworzyc pliku temp");
-        exit(1);
+        exit(0);
     }
 
     fseek(f, 0, SEEK_END);
@@ -47,11 +51,21 @@ char* load_from_tmp(){
 
     fseek(f, 0, SEEK_SET);
     char* block = calloc(size, sizeof(char));
-    fgets(block, size, f);
+    char* temp = block;
+    char znak = ' ';
+    while(znak != EOF){
+        znak = fgetc(f);
+        *temp = znak;
+        temp++;
+    }
     fclose(f);
-
+    int systemRet = system("rm temp");
+    if(systemRet == -1){
+        printf("System method failed");
+    }
     return block;
 }
+
 
 void add_temp_to_array(struct block_array *blockArray){
     char* new_block;
@@ -59,6 +73,7 @@ void add_temp_to_array(struct block_array *blockArray){
     blockArray->array[blockArray->no_blocks] = new_block;
     blockArray->no_blocks++;
 }
+
 
 void delete_block(int id, struct block_array *block_array) {
     if(id>=block_array->no_blocks){

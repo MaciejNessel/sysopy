@@ -1,19 +1,8 @@
+static
 create_table  real_time: 0.000000l
 create_table  user_time: 0.000000l
 create_table  system_time: 0.000000l
 wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-TOTAL : real_time: 0.030000l
-TOTAL : user_time: 0.000000l
-TOTAL : system_time: 0.000000l
-create_table  real_time: 0.000000l
-create_table  user_time: 0.000000l
-create_table  system_time: 0.000000l
-wc_files  real_time: 0.000000l
 wc_files  user_time: 0.000000l
 wc_files  system_time: 0.000000l
 wc_files  real_time: 0.030000l
@@ -23,6 +12,79 @@ wc_files  real_time: 0.010000l
 wc_files  user_time: 0.000000l
 wc_files  system_time: 0.000000l
 wc_files  real_time: 0.020000l
+wc_files  user_time: 0.000000l
+wc_files  system_time: 0.000000l
+wc_files  real_time: 0.020000l
+wc_files  user_time: 0.000000l
+wc_files  system_time: 0.000000l
+wc_files  real_time: 0.030000l
+wc_files  user_time: 0.000000l
+wc_files  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+TOTAL : real_time: 0.120000l
+TOTAL : user_time: 0.000000l
+TOTAL : system_time: 0.000000l
+create_table  real_time: 0.000000l
+create_table  user_time: 0.000000l
+create_table  system_time: 0.000000l
+wc_files  real_time: 0.010000l
+wc_files  user_time: 0.000000l
+wc_files  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+wc_files  real_time: 0.010000l
+wc_files  user_time: 0.000000l
+wc_files  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+wc_files  real_time: 0.010000l
+wc_files  user_time: 0.000000l
+wc_files  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+wc_files  real_time: 0.010000l
+wc_files  user_time: 0.000000l
+wc_files  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+TOTAL : real_time: 0.050000l
+TOTAL : user_time: 0.000000l
+TOTAL : system_time: 0.000000l
+shared
+create_table  real_time: 0.000000l
+create_table  user_time: 0.000000l
+create_table  system_time: 0.000000l
+wc_files  real_time: 0.010000l
+wc_files  user_time: 0.000000l
+wc_files  system_time: 0.000000l
+wc_files  real_time: 0.040000l
+wc_files  user_time: 0.000000l
+wc_files  system_time: 0.000000l
+wc_files  real_time: 0.010000l
+wc_files  user_time: 0.000000l
+wc_files  system_time: 0.000000l
+wc_files  real_time: 0.030000l
 wc_files  user_time: 0.000000l
 wc_files  system_time: 0.000000l
 wc_files  real_time: 0.010000l
@@ -31,55 +93,25 @@ wc_files  system_time: 0.000000l
 wc_files  real_time: 0.040000l
 wc_files  user_time: 0.000000l
 wc_files  system_time: 0.000000l
-TOTAL : real_time: 0.110000l
-TOTAL : user_time: 0.000000l
-TOTAL : system_time: 0.000000l
-create_table  real_time: 0.000000l
-create_table  user_time: 0.000000l
-create_table  system_time: 0.000000l
-wc_files  real_time: 0.000000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-TOTAL : real_time: 0.100000l
-TOTAL : user_time: 0.000000l
-TOTAL : system_time: 0.000000l
-create_table  real_time: 0.000000l
-create_table  user_time: 0.000000l
-create_table  system_time: 0.000000l
-wc_files  real_time: 0.000000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.000000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-TOTAL : real_time: 0.090000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
+TOTAL : real_time: 0.140000l
 TOTAL : user_time: 0.000000l
 TOTAL : system_time: 0.000000l
 create_table  real_time: 0.000000l
@@ -88,300 +120,27 @@ create_table  system_time: 0.000000l
 wc_files  real_time: 0.010000l
 wc_files  user_time: 0.000000l
 wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
 wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-TOTAL : real_time: 0.090000l
-TOTAL : user_time: 0.000000l
-TOTAL : system_time: 0.000000l
-TOTAL : real_time: 0.000000l
-TOTAL : user_time: 0.000000l
-TOTAL : system_time: 0.000000l
-create_table  real_time: 0.000000l
-create_table  user_time: 0.000000l
-create_table  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.000000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-TOTAL : real_time: 0.100000l
-TOTAL : user_time: 0.000000l
-TOTAL : system_time: 0.000000l
-create_table  real_time: 0.000000l
-create_table  user_time: 0.000000l
-create_table  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-TOTAL : real_time: 0.090000l
-TOTAL : user_time: 0.000000l
-TOTAL : system_time: 0.000000l
-create_table  real_time: 0.000000l
-create_table  user_time: 0.000000l
-create_table  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.000000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-TOTAL : real_time: 0.090000l
-TOTAL : user_time: 0.000000l
-TOTAL : system_time: 0.000000l
-create_table  real_time: 0.000000l
-create_table  user_time: 0.000000l
-create_table  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.000000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.000000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-TOTAL : real_time: 0.090000l
-TOTAL : user_time: 0.000000l
-TOTAL : system_time: 0.000000l
-create_table  real_time: 0.000000l
-create_table  user_time: 0.000000l
-create_table  system_time: 0.000000l
-wc_files  real_time: 0.000000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.000000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
 wc_files  user_time: 0.000000l
 wc_files  system_time: 0.000000l
 remove_block  real_time: 0.000000l
 remove_block  user_time: 0.000000l
 remove_block  system_time: 0.000000l
-create_table  real_time: 0.000000l
-create_table  user_time: 0.000000l
-create_table  system_time: 0.000000l
 wc_files  real_time: 0.010000l
 wc_files  user_time: 0.000000l
 wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.000000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
+remove_block  real_time: 0.000000l
+remove_block  user_time: 0.000000l
+remove_block  system_time: 0.000000l
 wc_files  real_time: 0.010000l
 wc_files  user_time: 0.000000l
 wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
 remove_block  real_time: 0.000000l
 remove_block  user_time: 0.000000l
 remove_block  system_time: 0.000000l
-create_table  real_time: 0.000000l
-create_table  user_time: 0.000000l
-create_table  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-create_table  real_time: 0.000000l
-create_table  user_time: 0.000000l
-create_table  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.000000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-create_table  real_time: 0.000000l
-create_table  user_time: 0.000000l
-create_table  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.030000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-TOTAL : real_time: 0.100000l
-TOTAL : user_time: 0.000000l
-TOTAL : system_time: 0.000000l
-create_table  real_time: 0.000000l
-create_table  user_time: 0.000000l
-create_table  system_time: 0.000000l
-wc_files  real_time: 0.000000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.010000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-wc_files  real_time: 0.020000l
-wc_files  user_time: 0.000000l
-wc_files  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-remove_block  real_time: 0.000000l
-remove_block  user_time: 0.000000l
-remove_block  system_time: 0.000000l
-TOTAL : real_time: 0.090000l
+TOTAL : real_time: 0.040000l
 TOTAL : user_time: 0.000000l
 TOTAL : system_time: 0.000000l

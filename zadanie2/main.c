@@ -74,7 +74,7 @@ int main(int argc, char **argv){
         }
         else{
             result = "wrong_arg ";
-            printf("Podano bledny argument\n");
+            printf("Podano bledny argument %s\n", argv[i]);
             break;
         }
 

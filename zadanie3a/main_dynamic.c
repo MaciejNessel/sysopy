@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "string.h"
+#include <dlfcn.h>
 
 double time_diff(clock_t start, clock_t end){
     return (double)(end - start) / sysconf(_SC_CLK_TCK);
@@ -25,6 +26,38 @@ void write_result(clock_t start, clock_t end, struct tms* t_start, struct tms* t
 
 
 int main(int argc, char **argv){
+    void *handle = dlopen("./libbtm.so", RTLD_LAZY);
+    if(!handle){
+        printf("Problem z otwarciem biblioteki!");
+        return 0;
+    }
+
+    void* (*create_table)();
+    create_table = dlsym(handle,"create_table");
+    if(dlerror() != NULL){
+        printf("Funkcja nie zostala zaladowana poprawnie1");
+        return 0;
+    }
+    void* (*wc_files)();
+    wc_files = dlsym(handle,"wc_files");
+    if(dlerror() != NULL){
+        printf("Funkcja nie zostala zaladowana poprawnie");
+        return 0;
+    }
+    void* (*add_temp_to_array)();
+    add_temp_to_array = dlsym(handle,"add_temp_to_array");
+    if(dlerror() != NULL){
+        printf("Funkcja nie zostala zaladowana poprawnie");
+        return 0;
+    }
+    void* (*delete_block)();
+    delete_block = dlsym(handle,"delete_block");
+    if(dlerror() != NULL){
+        printf("Funkcja nie zostala zaladowana poprawnie");
+        return 0;
+    }
+
+
     FILE* f = NULL;
     struct block_array* blockArray= NULL;
 
@@ -37,7 +70,7 @@ int main(int argc, char **argv){
 
     char* result = "";
     total_clock_start = times(tms_start);
-    for(int i = 2; i<argc; i++){
+    for(int i = 1; i<argc; i++){
         clock_start = times(tms_start);
         if(strcmp(argv[i], "create_table") == 0){
             result = "create_table ";
@@ -89,5 +122,6 @@ int main(int argc, char **argv){
 
     fclose(f);
     free(blockArray);
+    dlclose(handle);
     return 0;
 }

@@ -6,7 +6,36 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a61a8bd6-b043-4f77-a3fa-5d573d55eac0" name="Changes" comment="" />
+    <list default="true" id="a61a8bd6-b043-4f77-a3fa-5d573d55eac0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie1/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie1/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie1/btm.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie1/btm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie1/btm.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie1/libbtm.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie2/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie2/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie2/btm.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie2/btm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie2/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie2/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie2/raport2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie2/raport2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/a/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie3a/1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/a/2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie3a/2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/a/3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie3a/3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/a/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie3b/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/a/btm.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/a/btm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/a/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie3a/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/a/main_dynamic.c" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie3a/main_dynamic.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/a/raport3a.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/b/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie3b/1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/b/2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie3b/2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/b/3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie3b/3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/b/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie3a/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/b/btm.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/b/btm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/b/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie3b/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3/b/main_dynamic.c" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie3b/main_dynamic.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +43,9 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -25,43 +57,55 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/zadanie2/Makefile" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/zadanie1/btm.c" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/zadanie1/Makefile" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/zadanie2/main.c" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/zadanie1/btm.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="267YrgqFKb24F0DjZWxSa8sEMhj" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/zadanie3/b" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/zadanie1" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie1" />
+      <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie2" />
+      <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie3a" />
       <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie3\b" />
       <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie3\a" />
-      <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie2" />
-      <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie2" />
-      <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie1" />
+      <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie3a" />
+      <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie3b" />
+      <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie3\a" />
+      <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie3\b" />
+      <recent name="C:\Studia\Systemy operacyjne\lab1\zadanie3" />
     </key>
   </component>
-  <component name="RunManager" selected="Makefile Target.ss">
+  <component name="RunManager" selected="Makefile Target.clean">
+    <configuration name="clean" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/zadanie3a/Makefile" target="clean" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
     <configuration name="shared_main" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
       <makefile filename="$PROJECT_DIR$/zadanie2/Makefile" target="shared_main" workingDirectory="" arguments="">
         <envs />
@@ -77,9 +121,11 @@
     <list>
       <item itemvalue="Makefile Target.shared_main" />
       <item itemvalue="Makefile Target.ss" />
+      <item itemvalue="Makefile Target.clean" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Makefile Target.clean" />
         <item itemvalue="Makefile Target.ss" />
         <item itemvalue="Makefile Target.shared_main" />
       </list>
@@ -108,11 +154,27 @@
       <workItem from="1647176710277" duration="6699000" />
       <workItem from="1647209959932" duration="9046000" />
       <workItem from="1647263173376" duration="40000" />
+      <workItem from="1647288385863" duration="3776000" />
+      <workItem from="1647292832838" duration="8553000" />
+      <workItem from="1647301929424" duration="9000" />
+      <workItem from="1647301979197" duration="1175000" />
+      <workItem from="1647304174040" duration="2000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
