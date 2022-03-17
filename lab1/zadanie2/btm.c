@@ -6,15 +6,15 @@
 
 struct block_array* create_table(int size){
     if(size<1){
-        printf("Podany rozmiar jest za maly");
-        return NULL;
+        printf("The size is too small");
+        exit(1);
     }
 
     struct block_array *result = calloc(1, sizeof(struct block_array));
 
     char** arr = (char**) calloc(size, sizeof(char*));
     result->array = arr;
-    result->no_blocks =0;
+    result->no_blocks = 0;
 
     return result;
 }
@@ -22,8 +22,8 @@ struct block_array* create_table(int size){
 
 void wc_files(char* files){
     if(files==NULL){
-        printf("Nie podano sciezek do plikow!\nNie dokonano zliczania.\n");
-        return;
+        printf("File path error\n");
+        exit(1);
     }
     char* command = calloc(100, sizeof(char));
     strcat(command, "wc ");
@@ -32,6 +32,7 @@ void wc_files(char* files){
     int systemRet = system(command);
     if(systemRet == -1){
         printf("System method failed");
+        exit(1);
     }
     free(command);
 }
@@ -42,8 +43,8 @@ char* load_from_tmp(){
     f = fopen("./temp", "r");
 
     if (f == NULL){
-        printf("Nie mozna otworzyc pliku temp");
-        exit(0);
+        printf("Temp file error");
+        exit(1);
     }
 
     fseek(f, 0, SEEK_END);
@@ -77,8 +78,8 @@ void add_temp_to_array(struct block_array *blockArray){
 
 void delete_block(int id, struct block_array *block_array) {
     if(id>=block_array->no_blocks){
-        printf("Nie ma bloku o takim id\n");
-        exit(0);
+        printf("No block with this id\nNothing was removed");
+        return;
     }
     free(block_array->array[id]);
     block_array->array[id] = NULL;
