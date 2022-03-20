@@ -4,12 +4,46 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
+#include <sys/times.h>
+#include <time.h>
 
+/*
+ * Pomiar czasu
+ */
+double time_diff(clock_t start, clock_t end){
+    return (double)(end - start) / sysconf(_SC_CLK_TCK);
+}
+void write_result(clock_t start, clock_t end, struct tms* t_start, struct tms* t_end, FILE* f){
+    printf("Pomiar przy użyciu funkcji systemowych:\n");
+    printf("real_time: %fl\n", time_diff(start, end));
+    //tms_utime – czas cpu wykonywania procesu w trybie użytkownika
+    printf("user_time: %fl\n", time_diff(t_start->tms_utime, t_end->tms_utime));
+    //tms_stime – czas cpu wykonywania procesu w trybie jądra
+    printf("system_time: %fl\n", time_diff(t_start->tms_stime, t_end->tms_stime));
+
+    fprintf(f, "Pomiar przy użyciu funkcji systemowych:\n");
+    fprintf(f, "real_time: %fl\n", time_diff(start, end));
+    fprintf(f, "user_time: %fl\n", time_diff(t_start->tms_utime, t_end->tms_utime));
+    fprintf(f, "system_time: %fl\n", time_diff(t_start->tms_stime, t_end->tms_stime));
+}
+
+
+/* whitespace_characters:
+ *  space (' '), tab ('\t'), carriage return ('\r'), newline ('\n'), vertical tab ('\v') and formfeed ('\f')
+ */
 int is_whitespace_character(char ch){
     return (ch == ' ' || ch == '\t' || ch == '\r' || ch == '\n' || ch == '\v' || ch == '\0');
 }
 
 int main(int argc, char* argv[]){
+    //Pomiar czasu
+    clock_t clock_start, clock_end;
+    struct tms* tms_start = malloc(sizeof (struct tms));
+    struct tms* tms_end = malloc(sizeof (struct tms));
+    FILE* f = NULL;
+    f = fopen("./pomiar_zad_1.txt", "a");
+
+
     char* input_file_path = calloc(256, sizeof (char));
     char* output_file_path = calloc(256, sizeof (char));
     if(argc < 3){
@@ -30,10 +64,13 @@ int main(int argc, char* argv[]){
     char c;
 
     int actual_line_size = 256;
-    char* buff = calloc(actual_line_size, sizeof (char ));
+    char* buff = calloc(actual_line_size, sizeof (char));
 
     int can_add = 0;
     int idx = 0;
+
+    clock_start = times(tms_start);
+
     while(read(input_file, &c, 1)==1){
         buff[idx] = c;
         if(!is_whitespace_character(c)){
@@ -60,6 +97,9 @@ int main(int argc, char* argv[]){
     if(idx > 0 && can_add){
         write(output_file, buff, idx);
     }
+
+    clock_end = times(tms_end);
+    write_result(clock_start, clock_end, tms_start, tms_end, f);
 
     printf("Process successfully completed.\n");
     return 0;

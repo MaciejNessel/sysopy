@@ -1,0 +1,8 @@
+Pomiar przy użyciu funkcji biblioteki C:
+real_time: 0.000000l
+user_time: 0.000000l
+system_time: 0.000000l
+Pomiar przy użyciu funkcji systemowych:
+real_time: 0.700000l
+user_time: 0.000000l
+system_time: 0.030000l
