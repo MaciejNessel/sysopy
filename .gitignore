@@ -16,3 +16,5 @@
 *.ko
 *.obj
 *.elfg
+
+./lab3/zad2/temp
