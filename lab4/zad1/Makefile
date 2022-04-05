@@ -5,16 +5,16 @@ main:
 	gcc main.o -o main
 
 pending:
-	./main pending >> raport.txt
+	./main pending 2>&1 | tee -a raport.txt
 
 ignore:
-	./main ignore >> raport.txt
+	./main ignore 2>&1 | tee -a raport.txt
 
 handler:
-	./main handler >> raport.txt
+	./main handler 2>&1 | tee -a raport.txt
 
 mask:
-	./main mask >> raport.txt
+	./main mask 2>&1 | tee -a raport.txt
 
 clean:
 	rm *.o main

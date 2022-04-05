@@ -1,4 +1,4 @@
-all: clean main test
+all: main test
 
 main:
 	gcc -c -Wall catcher.c

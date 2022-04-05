@@ -1,4 +1,4 @@
-all: main clean
+all: main
 
 main:
 	gcc -c -Wall main.c

@@ -1,33 +1,28 @@
-Start test [mode: ignore]
-
+[mode: ignore]
 Start fork test: 
 End fork test.
 
 Start EXEC test:
 End EXEC test.
-Start test [mode: ignore]
+[mode: ignore]
 
-Start test [mode: handler]
+[mode: handler]
 Sygnał został przechwycony i obsłużony.
-
 Start fork test: 
 Sygnał został przechwycony i obsłużony.
 End fork test.
-Start test [mode: handler]
-Sygnał został przechwycony i obsłużony.
+[mode: handler]
 
-Start test [mode: mask]
-
+[mode: mask]
 Start fork test: 
 End fork test.
 
 Start EXEC test:
 End EXEC test.
-Start test [mode: mask]
+[mode: mask]
 
-Start test [mode: pending]
+[mode: pending]
 SIGUSR1 jest obsługiwany.
-
 Start fork test: 
 SIGUSR1 NIE jest obsługiwany.
 End fork test.
@@ -35,6 +30,5 @@ End fork test.
 Start EXEC test:
 SIGUSR1 NIE jest obsługiwany.
 End EXEC test.
-Start test [mode: pending]
-SIGUSR1 jest obsługiwany.
+[mode: pending]
 

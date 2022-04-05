@@ -95,7 +95,7 @@ int main(int argc, char** argv) {
         return 0;
     }
 
-    printf("Start test [mode: %s]\n", operation_mode);
+    printf("[mode: %s]\n", operation_mode);
     if(strcmp(operation_mode, "ignore") == 0){
         signal(SIGUSR1, SIG_IGN);
     }
@@ -113,10 +113,8 @@ int main(int argc, char** argv) {
     if (strcmp(operation_mode, "pending") == 0){
         pending_signal();
     }
-    printf("\n");
     fork_test(operation_mode);
     exec_test_start(argv);
-
     return 0;
 }
 

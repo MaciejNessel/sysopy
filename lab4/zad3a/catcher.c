@@ -13,14 +13,14 @@ int counter = 0;
 pid_t sender_pid;
 
 
-void handle_SIGUSR1(int sig){
-    printf("--- catcher got %d\n", sig);
-    counter+=1;
-}
 
-void handle_SIGUSR2(int sig, siginfo_t *info, void *context){
-    receiving = false;
-    sender_pid = info->si_pid;
+void handle(int sig, siginfo_t *info, void *context){
+    if(sig == SIGUSR1 || sig == SIGRTMIN + 1)
+        counter++;
+    if(sig == SIGUSR2 || sig == SIGRTMIN + 2){
+        receiving = false;
+        sender_pid = info->si_pid;
+    }
 }
 
 void send_SIGUSR1(char* mode, int my_sig1){
@@ -45,6 +45,7 @@ void sendSIGUSR2(char* mode, int my_sig2){
 }
 
 int main(int argc, char* argv[]){
+
     printf("Catcher PID: %d\n", getpid());
 
     char* mode = argv[1];
@@ -57,9 +58,16 @@ int main(int argc, char* argv[]){
         my_sig2 = SIGRTMIN + 2;
     }
 
-    signal(my_sig1, handle_SIGUSR1);
-    struct sigaction act = {.sa_flags = SA_SIGINFO, .sa_sigaction = handle_SIGUSR2};
+    struct sigaction act = {.sa_flags = SA_SIGINFO, .sa_sigaction = handle};
     sigaction(my_sig2, &act, NULL);
+    if(sigaction(my_sig1, &act, NULL) == -1){
+        printf("Error\n");
+        exit(0);
+    }
+    if(sigaction(my_sig2, &act, NULL) == -1){
+        printf("Error\n");
+        exit(0);
+    }
 
     // Oczekiwanie na sygnały - przechwyca dopóki nie otrzyma SIGUSR2
     while (receiving);
@@ -67,7 +75,7 @@ int main(int argc, char* argv[]){
     send_SIGUSR1(mode, my_sig1);
     sendSIGUSR2(mode, my_sig2);
 
-    printf("catcher received %d signals\n", counter);
+    printf("Catcher otrzymał %d sygnałów.\n", counter);
 
     return 0;
 }

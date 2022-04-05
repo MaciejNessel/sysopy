@@ -13,6 +13,8 @@ int main(int argc, char* argv[]){
     char * catcher_pid_str = malloc(10);
     sprintf(catcher_pid_str, "%d", catcher_pid);
 
+    sleep(1);
+
     if (fork() == 0){
         execl("./sender", "./sender", argv[1], catcher_pid_str, argv[2], NULL);
     }

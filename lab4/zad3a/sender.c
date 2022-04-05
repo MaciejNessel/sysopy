@@ -8,19 +8,16 @@
 #include <string.h>
 #include <stdbool.h>
 
-
 bool receiving = true;
 int counter = 0;
 
-// Zliczamy otrzymaną ilość sygnałów SIGUSR1
-void handle_SIGUSR1(int sig){
-    printf("sender got %d\n", sig);
-    counter += 1;
-}
 
-//Otrzymanie sygnału SIGUSR2 powinno zakończyć transmisję
-void handle_SIGUSR2(int sig, siginfo_t *info, void *context){
-    receiving = false;
+void handle(int sig, siginfo_t *info, void *context){
+    if(sig == SIGUSR1 || sig == SIGRTMIN + 1)
+        counter++;
+    if(sig == SIGUSR2 || sig == SIGRTMIN + 2){
+        receiving = false;
+    }
 }
 
 void send_SIGUSR1(char* mode, int my_sig1, pid_t catcher_pid, int n){
@@ -56,17 +53,23 @@ int main(int argc, char* argv[]){
         my_sig2 = SIGRTMIN + 2;
     }
 
-    signal(my_sig1, handle_SIGUSR1);
-    struct sigaction act = {.sa_flags = SA_SIGINFO, .sa_sigaction = handle_SIGUSR2};
+    struct sigaction act = {.sa_flags = SA_SIGINFO, .sa_sigaction = handle};
     sigaction(my_sig2, &act, NULL);
-
+    if(sigaction(my_sig1, &act, NULL) == -1){
+        printf("Error\n");
+        exit(0);
+    }
+    if(sigaction(my_sig2, &act, NULL) == -1){
+        printf("Error\n");
+        exit(0);
+    }
 
     send_SIGUSR1(mode, my_sig1, catcher_pid, n);
     send_SIGUSR2(mode, my_sig2, catcher_pid);
 
     while (receiving);
 
-    printf("Sender received %d / %d signals\n", counter, n);
+    printf("Sender otrzymał %d / %d signals\n", counter, n);
 
     return 0;
 }

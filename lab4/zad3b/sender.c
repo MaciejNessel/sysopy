@@ -14,9 +14,8 @@ int counter = 0;
 bool waiting = false;
 
 void handle_SIGUSR1(int sig){
-    printf("sender got %d\n", sig);
     waiting = false;
-    counter+=1;
+    counter++;
 }
 
 void handle_SIGUSR2(int sig, siginfo_t *info, void *context){
