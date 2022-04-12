@@ -1,0 +1,9 @@
+skladnik1 = cat /etc/passwd
+skladnik2 = echo hello
+skladnik3 = tail -5
+skladnik4 = ls
+skladnik5 = cat /etc/passwd | tail -1
+skladnik1 | skladnik2
+skladnik1 | skladnik3
+skladnik4
+skladnik5

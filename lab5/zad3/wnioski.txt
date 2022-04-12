@@ -1,0 +1,3 @@
+Wnioski:
+* towar (ciągi znaków) nie są utracone, ani zwielokrotnione
+* zostają one poprawnie umieszczane w odpowiednim wierszu pliku wyjściowego
