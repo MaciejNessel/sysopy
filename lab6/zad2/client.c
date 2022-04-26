@@ -9,7 +9,8 @@
 #include <ctype.h>
 #include <time.h>
 #include <signal.h>
-
+#include <fcntl.h>
+#include <mqueue.h>
 #include "common.h"
 
 int client_queue = -1;
@@ -17,38 +18,42 @@ int server_queue = -1;
 int client_id = -1;
 pid_t child_pid = -1;
 int active = 1;
+char client_queue_name[20];
 
 
 void request_send(Message *msg) {
     msg->client_id = client_id;
-    if(msgsnd(server_queue, msg, MSG_SIZE, 0) == -1){
+    if (mq_send(server_queue, (char *) msg, MSG_SIZE, msg->mtype) == -1){
         printf("[client][%s] request failed.\n", mtype_str[msg->mtype]);
     }
     printf("[client][%s] sent.\n", mtype_str[msg->mtype]);
 }
 
-void register_client(key_t private_key) {
+void register_client() {
     Message msg;
     msg.mtype = INIT;
     msg.client_id = -1;
-    sprintf(msg.message_text, "%d", private_key);
-    if (msgsnd(server_queue, &msg, MSG_SIZE, 0) == -1){
+    sprintf(msg.message_text,"%s", client_queue_name);
+    if (mq_send(server_queue, (char *) &msg, MSG_SIZE, msg.mtype) == -1){
         puts("[client][init] INIT request failed.");
         exit(1);
     }
-    if (msgrcv(client_queue, &msg, MSG_SIZE, 0, 0) == -1){
+    Message received_msg;
+    if (mq_receive(client_queue, (char*) &received_msg, MSG_SIZE, NULL) == -1){
         puts("[client][init] catching INIT response failed.");
         exit(1);
     }
-    if (sscanf(msg.message_text, "%d", &client_id) < 1){
-        puts("[client][init] scanning INIT response failed.");
-        exit(1);
-    }
+    client_id = atoi(received_msg.message_text);
     if (client_id < 0){
         puts("[client][init] server cannot have more clients");
         exit(1);
     }
     printf("[client][init] Client ID: %d Queue: %d\n\n", client_id, client_queue);
+}
+
+void list(Message *msg){
+    msg->mtype = LIST;
+    request_send(msg);
 }
 
 void send2one(Message *msg){
@@ -87,24 +92,24 @@ void stop_client(){
     msg.mtype = STOP;
     msg.client_id = client_id;
     sprintf(msg.message_text, "%d", client_id);
-    if (msgsnd(server_queue, &msg, MSG_SIZE, 0) == -1){
+    if (mq_send(server_queue, (char *) &msg, MSG_SIZE, msg.mtype) == -1){
         puts("[client][stop] SIGINT || STOP request failed.");
-        return;
+        exit(1);
     }
     request_send(&msg);
 }
 
 void exit_handler(){
-    struct msqid_ds current_state;
-    if (msgctl(client_queue, IPC_RMID, &current_state) == -1){
-        puts("[client] removing queue failed.");
+    if(mq_close(server_queue) == -1){
+        puts("[client] closing server queue failed");
     }
-    puts("[client] queue removed.");
-}
-
-void list(Message *msg){
-    msg->mtype = LIST;
-    request_send(msg);
+    if(mq_close(client_queue) == -1){
+        puts("[client] closing client queue failed");
+    }
+    if(mq_unlink(client_queue_name) == -1){
+        puts("[client] closing client queue failed");
+    }
+    puts("[client] queues closed, removed.");
 }
 
 void sig_handler(){
@@ -129,44 +134,19 @@ void handle_command(char* cmd){
     }
 }
 
-int get_server_queue(char *path, int id_) {
-    int key = ftok(path, id_);
-    if(key == -1) {
-        puts("[client] the key could not be generated.");
-        exit(1);
-    }
-    int queue_id = msgget(key, 0);
-    if (queue_id == -1){
-        puts("[client] opening queue failed.");
-        exit(1);
-    }
-    return queue_id;
-}
+void setup_queue(){
+    struct mq_attr attr;
+    attr.mq_maxmsg = MAX_CLIENTS;
+    attr.mq_msgsize = MSG_SIZE;
 
-key_t setup_queues(){
-    char* path = getenv("HOME");
-    if(path == NULL){
-        printf("[client] getting path failed.");
-    }
-
-    server_queue = get_server_queue(path, PROJ);
-    if(server_queue == -1){
-        puts("[client] getting server queue failed");
+    if((client_queue = mq_open(client_queue_name, O_RDWR | O_CREAT, 0666, &attr)) == -1){
+        puts("[client] create client queue failed");
         exit(1);
     }
-
-    key_t private_key = ftok(path, getpid());
-    if(private_key == -1){
-        puts("[client] private key could not be generated.");
+    if ((server_queue = mq_open(QUEUE_NAME, O_RDWR)) == -1){
+        puts("[client] opening server queue failed.");
         exit(1);
     }
-
-    client_queue = msgget(private_key, IPC_CREAT | IPC_EXCL | 0666);
-    if (client_queue == -1){
-        puts("[client] create client queue failed.");
-        exit(1);
-    }
-    return private_key;
 }
 
 void handle_message(Message* msg){
@@ -185,14 +165,16 @@ void handle_message(Message* msg){
 }
 
 int main(){
-    key_t private_key = setup_queues();
-    register_client(private_key);
+    sprintf(client_queue_name, "/%d", getpid());
+    setup_queue();
+    register_client();
 
     child_pid = fork();
     if(child_pid == -1){
         puts("[client] fork failed.");
         return -1;
     }
+
     if (child_pid > 0){
         // Parent process- responsible for receiving messages
         signal(SIGINT, sig_handler);
@@ -200,7 +182,7 @@ int main(){
         puts("[client] waiting for messages...");
         Message buffer;
         while(active){
-            if (msgrcv(client_queue, &buffer, MSG_SIZE, 0, 0) < 0){
+            if (mq_receive(client_queue, (char*) &buffer, MSG_SIZE, NULL) == -1){
                 puts("[client] Receiving message failed.");
                 continue;
             }

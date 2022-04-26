@@ -9,12 +9,14 @@
 #include <ctype.h>
 #include <time.h>
 #include <signal.h>
+#include <fcntl.h>
+#include <mqueue.h>
 
 #include "common.h"
 
 // Global variables
-int server_queue = -1;
-int clients_queue[MAX_CLIENTS];
+mqd_t server_queue = -1;
+mqd_t clients_queue[MAX_CLIENTS];
 int active = 1;
 int client_count = 0;
 
@@ -28,7 +30,7 @@ char* get_time(){
     return result;
 }
 
-void result_to_file(struct Message *msg, FILE *file){
+void result_to_file(Message *msg, FILE *file){
     printf("\nTIME: %s", get_time());
     printf("Client ID: %d\n", msg->client_id);
     printf("Message: %s\n", mtype_str[msg->mtype]);
@@ -36,19 +38,18 @@ void result_to_file(struct Message *msg, FILE *file){
     fprintf(file, "\nTIME: %s", get_time());
     fprintf(file, "Client ID: %d\n", msg->client_id);
     fprintf(file, "Message: %s\n", mtype_str[msg->mtype]);
-
 }
 
 int init(struct Message *msg){
-    key_t client_queue_key;
-    if (sscanf(msg->message_text, "%d", &client_queue_key) < 0){
+    char client_queue_key[20];
+    if (sscanf(msg->message_text, "%s", client_queue_key) < 0){
         puts("[server][init] reading client_queue_key failed");
         return 1;
     }
 
-    int client_queue_id = msgget(client_queue_key, 0);
-    if (client_queue_id == -1) {
-        puts("[server][init] reading client_queue_id failed");
+    mqd_t client_queue = mq_open(client_queue_key, O_RDWR);
+    if (client_queue == -1) {
+        puts("[server][init] reading client_queue failed");
         return 1;
     }
 
@@ -56,20 +57,21 @@ int init(struct Message *msg){
     if (client_count > MAX_CLIENTS - 1) {
         puts("[server][init] maximum number of clients reached.");
         sprintf(msg->message_text, "%d", -1);
-    } else {
-        int i=0;
-        while (i<MAX_CLIENTS){
+    }
+    else {
+        int i = 0;
+        while (i < MAX_CLIENTS){
             if(clients_queue[i] == -1)
                 break;
             i++;
         }
-        if(i<MAX_CLIENTS){
-            clients_queue[i] = client_queue_id;
+        if(i < MAX_CLIENTS){
+            clients_queue[i] = client_queue;
             sprintf(msg->message_text, "%d", i);
             client_count++;
         }
     }
-    if (msgsnd(client_queue_id, msg, MSG_SIZE, 0) == -1){
+    if (mq_send(client_queue, (char *) msg, MSG_SIZE, msg->mtype) == -1){
         puts("[server][init] INIT response failed");
         return 1;
     }
@@ -89,7 +91,8 @@ void _2one(struct Message *msg){
         puts("[server][2one] wrong client id.");
         return;
     }
-    if (msgsnd(clients_queue[msg->recipient], msg, MSG_SIZE, 0) == -1){
+
+    if (mq_send(clients_queue[msg->recipient], (char *) msg, MSG_SIZE, msg->mtype) == -1){
         puts("[server][2one] sending message failed");
         return;
     }
@@ -109,13 +112,17 @@ void _2all(struct Message *msg){
 
 void stop_client(struct Message *msg){
     int client_id = msg->client_id;
+    msg->mtype = STOP;
     if(client_id > MAX_CLIENTS){
         puts("[server][stop] wrong client id.");
         return;
     }
     if(clients_queue[client_id] != -1){
-        if(msgsnd(clients_queue[client_id], msg, MSG_SIZE, 0) == -1){
+        if (mq_send(clients_queue[client_id], (char *) msg, MSG_SIZE, msg->mtype) == -1){
             printf("[server][stop] request failed.\n");
+        }
+        if(mq_close(clients_queue[client_id]) == -1){
+            puts("[server] closing client queue failed.");
         }
         clients_queue[client_id] = -1;
         client_count--;
@@ -123,10 +130,10 @@ void stop_client(struct Message *msg){
     }
 }
 
-
 void sig_handler(){
     puts("\n[server][Ctrl + C received.]\n");
     active = 0;
+    exit(0);
 }
 
 void exit_handler(){
@@ -140,50 +147,50 @@ void exit_handler(){
         }
     }
     // Delete server queue
-    struct msqid_ds current_state;
-    if (msgctl(server_queue, IPC_RMID, &current_state) == -1){
-        puts("[server] removing queue failed.");
+    if(mq_close(server_queue) == -1){
+        puts("[server] closing server queue failed.");
+        return;
+    }
+    if(mq_unlink(QUEUE_NAME) == -1){
+        puts("[server] removing server queue failed.");
+        return;
     }
     puts("[server] queue removed.");
 }
 
-void setup_queue(){
-    char* path = getenv("HOME");
-    if(path == NULL){
-        printf("[server] Getting path failed.");
-    }
-
-    key_t public_key = ftok(path, PROJ);
-    if(public_key == -1){
-        puts("[server] Generation of public_key failed.");
-        exit(1);
-    }
-
-    server_queue = msgget(public_key, IPC_CREAT | IPC_EXCL | 0666);
-    if(server_queue == -1){
-        puts("[server] Creation of public queue failed");
+void setup_queue(const char* name){
+    mq_unlink(name);
+    struct mq_attr attr;
+    attr.mq_maxmsg = MAX_CLIENTS;
+    attr.mq_msgsize = MSG_SIZE;
+    if((server_queue = mq_open(name, O_RDWR | O_CREAT, 0666, &attr)) == -1){
+        puts("[server] open server queue failed.");
         exit(1);
     }
 }
 
 void handle_server_queue(struct Message *msg, FILE *file){
     puts("\n-------------------------------------------------------\n");
-    result_to_file(msg, file);
     if (msg == NULL) return;
     switch(msg->mtype){
         case LIST:
+            result_to_file(msg, file);
             list();
             break;
         case _2ALL:
+            result_to_file(msg, file);
             _2all(msg);
             break;
         case _2ONE:
+            result_to_file(msg, file);
             _2one(msg);
             break;
         case STOP:
+            result_to_file(msg, file);
             stop_client(msg);
             break;
         case INIT:
+            result_to_file(msg, file);
             if(init(msg)==1)
                 puts("[server] init client failed.");
             break;
@@ -193,7 +200,7 @@ void handle_server_queue(struct Message *msg, FILE *file){
 }
 
 int main(){
-    setup_queue();
+    setup_queue(QUEUE_NAME);
     atexit(exit_handler);
     signal(SIGINT, sig_handler);
 
@@ -205,8 +212,8 @@ int main(){
     puts("[server] working...");
     Message buffer;
     while (active){
-        if (msgrcv(server_queue, &buffer, MSG_SIZE, 0, 0) < 0){
-            puts("[server] receiving message failed.");
+        if(mq_receive(server_queue, (char*) &buffer, MSG_SIZE, NULL) == -1){
+            puts("[server] receiving  message failed.");
             continue;
         }
         handle_server_queue(&buffer, file);
