@@ -7,3 +7,5 @@ Repository for Operating Systems classes at AGH UST.
 * 3	Processes. ✓
 * 4	Signals	✓
 * 5 Pipes	✓
+* 6 IPC, System V, POSIX ✓
+* 7 Semaphores ✓
