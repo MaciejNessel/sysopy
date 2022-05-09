@@ -1,25 +1,63 @@
+### Zadanie 1 (40%)
+Napisz interpreter poleceń przechowywanych w pliku. Ścieżka do pliku to pierwszy argument wywołania programu.
 
-### Zadanie 1 (30%)
-Napisz program demonstrujący, czy ustawienia dyspozycji dla sygnałów, ich maski oraz czekające sysgnały są dziedziczone po wykonaniu funkcji fork oraz exec.
-W szczególności eksperymenty proszę wykonać dla sygnału SIGUSR1 w następujący sposób:
+Polecenia w pliku przechowywane  w następującej postaci:
 
-* Dziedziczenie ustawień sygnałów po wykonaniu funkcji fork. Proszę napisać program, który w zależności od wartości argumentu z linii poleceń, który może przyjmować wartości ignore, handler, mask lub pending, odpowiednio w procesie przodka ustawia ignorowanie, instaluje handler obsługujący sygnał wypisujący komunikat o jego otrzymaniu, maskuje ten sygnał oraz sprawdza (przy zamaskowaniu tego sygnału) czy wiszący/oczekujący sygnał jest widoczny w procesie, a następnie przy pomocy funkcji raise wysyła sygnał do samego siebie oraz wykonuje odpowiednie dla danej opcji działania, po czym tworzy potomka funkcją fork i ponownie przy pomocy funkcji raise potomek wysyła sygnał do samego siebie (z wyjątkiem opcji pending, gdzie testowane jest sprawdzenie, czy sygnał czekający w przodku jest widoczny w potomku).
-* Dziedziczenie ustawień sygnałów po wykonaniu funkcji exec. W podobny sposób sprawdź jaki wpływ na ustawienia sygnałów ma wywołanie funkcji exec.  Rozpatrz opcje:  ignore, mask i pending.
-* Przygotuj plik raport2.txt w którym nastąpi podsumowanie z wnioskami z wykonanych powyższych eksperymentów
+##### Definicja składników
+składnik1 = prog1 arg1 ... argn1 | prog2 arg1 ... argn2 | ... | progN arg1 ... argnN
+składnik2 = prog1 arg1 ... argn1 | prog2 arg1 ... argn2 | ... | progM arg1 ... argnM
+...
+składnikK = prog1 arg1 ... argn1 | prog2 arg1 ... argn2 | ... | progZ arg1 ... argnZ
+#####  Wykonanie potoku
+składnik1 | składnik2 | składnikK
+
+Przykład
+składnik1 = cat /etc/passwd | wc -l
+składnik2 = ls | grep '^a'
+składnik3 = grep 11
+
+składnik1 | składnik3 # ⇔ cat /etc/passwd | wc -l | grep 11
+składnik1             # ⇔ cat /etc/passwd | wc -l
+składnik2             # ⇔ ls | grep '^a'
+Interpreter powinien uruchomić wszystkie polecenia w osobnych procesach, zapewniając przy użyciu potoków nienazwanych oraz funkcji dup2(), by wyjście standardowe procesu k było przekierowane do wejścia standardowego procesu (k+1)
+Można założyć ograniczenie górne na ilość obsługiwanych argumentów oraz ilość połączonych komend w pojedynczym poleceniu (co najmniej 3).
+Po uruchomieniu ciągu programów składających się na pojedyncze polecenie (linijkę) interpreter powinien oczekiwać na zakończenie wszystkich tych programów.
+Program należy zaimplementować, korzystając z funkcji: pipe(), fork() oraz exec().
 
 ### Zadanie 2 (20%)
-Przetestuj działanie trzech wybranych flag w funkcji sigation. Jedną z nich powinna być flaga SA_SIGINFO. Dla tej flagi zainstaluj procedurę obsługi sygnału (handler) dla odpowiednio dobranych sygnałów stosując składnie procedury handlera z trzema argumentami. Wypisz i skomentuj (przygotowując odpowiednie scenariusze) trzy różne informacje, a dodatkowo także numer sygnału oraz identyfikator PID procesu wysyłającego dostarczane w strukturze siginfo_t przekazywanej jako drugi argument funkcji handlera.
+Napisać program przyjmujący jeden (nadawca lub data) lub trzy argumenty (<adresEmail> <tytuł> <treść>):
+* W przypadku wywołania z jednym argumentem uruchamiany jest (za pomocą popen()) program mail. Program użytkownika ma wypisywać listę e-maili posortowaną alfabetycznie wg. adresów e-mail (argument nadawca) lub wg. daty otrzymania e-maili (argument data)
+* Jeżeli program zostanie wywołany z trzema argumentami, to (za pomocą popen()) uruchamiany jest program mail i za jego pomocą wysyłany jest e-mail do określonego nadawcy z określonym tematem i treścią
 
-### Zadanie 3 (50%)
-Napisz dwa programy: sender program wysyłający sygnały SIGUSR1 i  catcher - program zliczający ilość odebranych sygnałów. Ilość sygnałów SIGUSR1 wysyłanych przez pierwszy program powinna być określana w parametrze wywołania tego programu. Program catcher jest uruchamiany najpierw, wypisuje swój numer PID i czeka na sygnały SIGUSR1 i SIGUSR2. Wszystkie pozostałe sygnały są blokowane. Przyjmijmy, że czekanie na sygnały w poszczególnych procesach (w zależności od zadań) odbywa się wywołując funkcję sigsuspend. Program sender przyjmuje trzy parametry: PID procesu catcher, ilość sygnałów do wysłania i tryb wysłania sygnałów.
+### Zadanie 3 (40%)
+W problemie producenta i konsumenta występują dwa rodzaje procesów, które dzielą wspólny bufor dla produkowanych i konsumowanych jednostek. Zadaniem producenta jest wytworzenie surowca, umieszczenie go w buforze i rozpoczęcie pracy od nowa. Konsument pobiera surowiec z bufora i wykorzystuje go.
 
-Po transmisji wszystkich sygnałów SIGUSR1 sender powinien wysłać sygnał SIGUSR2, po otrzymaniu którego catcher wysyła do sendera tyle sygnałów SIGUSR1, ile sam ich otrzymał a „transmisję” kończy wysłaniem sygnału SIGUSR2, wypisaniem liczby odebranych sygnałów i zakończeniem działania. PID sendera catcher pobiera ze struktury  siginfo_t po przechwyceniu od niego sygnału. Program sender po otrzymaniu sygnału SIGUSR2 wyświetla komunikat o ilości otrzymanych sygnałów SIGUSR1 oraz o tym, ile powinien ich otrzymać i kończy działanie.
+##### 30%
+Przy pomocy potoków nazwanych zaimplementować problem Producenta i Konsumenta. Napisać dwa niezależne programy - Producent oraz Konsument, które będą komunikować się poprzez potok nazwany (kolejkę FIFO).  Do potoku pisać będzie wiele procesów wykonujących program Producenta, a czytał będzie z niej jeden proces Konsumenta. Dla zademonstrowania, że nie doszło do utraty ani zwielokrotnienia towaru surowiec będzie pobierany z pliku przez Producenta (każdy Producent czyta dane z osobnego pliku) i umieszczany w innym pliku przez Konsumenta (otrzymane dane od producenta nr i mają się pojawić w linii nr i pliku wynikowego).
+Producent:
 
-UWAGA! W żaden sposób nie opóźniamy wysyłania sygnałów, wszelkie "gubienie" sygnałów jest zjawiskiem naturalnym.
+* przyjmuje cztery argumenty: ścieżka do potoku nazwanego, numer wiersza, ścieżka do pliku tekstowego z dowolną zawartością, N - liczba znaków odczytywanych jednorazowo z pliku
+* otwiera potok nazwany
+* wielokrotnie (aż do odczytania całego pliku):
+  odczekuje losową ilość czasu (np. 1-2 sekund)
+  zapisuje do potoku nazwanego: numer wiersza oraz odczytany fragment pliku (N odczytanych znaków)
+  Konsument:
 
-a) Wysyłanie sygnałów w obu programach należy wykonać w następujących trybach: (30%)
+przyjmuje trzy argumenty: ścieżka do potoku nazwanego, ścieżka do pliku tekstowego (do którego będzie zapisywany odczytany tekst), N — liczba znaków odczytywanych jednorazowo z pliku
+otwiera potok nazwany
+wielokrotnie:
+odczytuje numer wiersza i oraz N kolejnych znaków potoku nazwanego
+umieszcza odczytane znaki w linii nr i pliku tekstowego (różnym od plików, z których korzystają producenci)
+Pliki tekstowe powinny być krótkie (na 5-10 odczytów) i umożliwiać sprawdzenie poprawności działania (brak utraty, zwielokrotnienia surowca). W szczególności każdy Producent powinien otrzymać wygenerowany w dowolny sposób plik tekstowy z dowolną zawartością, ale w istotny sposób różniącą się od zawartości plików innych Producentów. Na przykład jeden producent może otrzymać plik zawierający tylko konkretną literę, inny tylko liczby itd.
 
-* KILL - za pomocą funkcji kill
-* SIGQUEUE - za pomocą funkcji sigqueue - wraz z przesłanym sygnałem catcher wysyła numer kolejnego odsyłanego sygnału, dzięki czemu sender wie, ile dokładnie catcher odebrał, a tym samym wysłał do niego sygnałów. Wypisz tę dodatkową informację w senderze.
-* SIGRT - zastępując SIGUSR1 i SIGUSR2 dwoma dowolnymi sygnałami czasu rzeczywistego wysyłanymi za pomocą kill. Jaka liczba sygnałów będzie teraz odebrana?
-b) Zmodyfikuj powyższe programy, dodając potwierdzenie odbioru sygnału po każdorazowym ich odebraniu przez program catcher. W tym celu, catcher wysyła do sendera sygnał SIGUSR1 informujący o odbiorze sygnału. Sender powinien wysłać kolejny sygnał dopiero po uzyskaniu tego potwierdzenia. Zapewnij rozwiązanie, w którym ilość sygnałów odebranych jest zgodna z ilością sygnałów wysłanych, i w którym nie dochodzi do zakleszczenia. (20%)
+##### 10%
+Utwórz plik wnioski.txt zawierający wyniki (wraz z wnioskami) następujących sprawdzań:
+Sprawdzić, że potoki nazwane działają dla niezależnych procesów — utworzyć potok z linii komend, a następnie uruchomić Producenta i Konsumenta w różnych terminalach. Dodatkowo należy napisać program, który tworzy potok nazwany, a następnie uruchamia program Konsumenta i pięciu Producentów (z różnymi argumentami).
+Sprawdź, dla trzech istotnie różnych wartości N (np. dla N = 5, N > PIPE_BUF), następujące przypadki:
+wielu producentów, jeden konsument
+jeden producenta, wielu konsumentów
+wielu producentów, wielu konsumentów
+Uwagi:
+Ponieważ, w tym przypadku kilka procesów będzie zapisywać do jednego, wspólnego pliku, dlatego należy użyć funkcji flock()
+Należy napisać program lub skrypt sprawdzający, czy zawartość pliku wejściowego, w całości, pojawiła się w odpowiedniej linii pliku wynikowego
+Uruchamianie powyższych przypadków testowych oraz programu/skryptu sprawdzającego  ma się odbywać za pomocą komendy make test
