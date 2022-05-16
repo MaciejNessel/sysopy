@@ -1,0 +1,112 @@
+------Test block------
+* No Threads: [1] 
+* Mode: [block]
+Thread 0 - time: 0.000866
+Main thread - time: 0.001178
+ 
+------Test block------
+* No Threads: [2] 
+* Mode: [block]
+Thread 0 - time: 0.000485
+Thread 1 - time: 0.000433
+Main thread - time: 0.000815
+ 
+------Test block------
+* No Threads: [4] 
+* Mode: [block]
+Thread 0 - time: 0.000303
+Thread 1 - time: 0.000260
+Thread 2 - time: 0.000302
+Thread 3 - time: 0.000340
+Main thread - time: 0.002563
+ 
+------Test block------
+* No Threads: [8] 
+* Mode: [block]
+Thread 0 - time: 0.000232
+Thread 1 - time: 0.000193
+Thread 2 - time: 0.000186
+Thread 3 - time: 0.000208
+Thread 4 - time: 0.000183
+Thread 5 - time: 0.000190
+Thread 6 - time: 0.000170
+Thread 7 - time: 0.000185
+Main thread - time: 0.000849
+ 
+------Test block------
+* No Threads: [16] 
+* Mode: [block]
+Thread 0 - time: 0.000138
+Thread 1 - time: 0.000110
+Thread 2 - time: 0.000100
+Thread 3 - time: 0.000095
+Thread 4 - time: 0.000087
+Thread 5 - time: 0.000086
+Thread 6 - time: 0.000134
+Thread 7 - time: 0.000126
+Thread 8 - time: 0.000135
+Thread 9 - time: 0.000122
+Thread 10 - time: 0.000182
+Thread 11 - time: 0.000110
+Thread 12 - time: 0.000154
+Thread 13 - time: 0.000149
+Thread 14 - time: 0.000128
+Thread 15 - time: 0.000133
+Main thread - time: 0.001980
+ 
+------Test numbers------
+* No Threads: [1] 
+* Mode: [numbers]
+Thread 0 - time: 0.001488
+Main thread - time: 0.001776
+ 
+------Test numbers------
+* No Threads: [2] 
+* Mode: [numbers]
+Thread 0 - time: 0.003029
+Thread 1 - time: 0.002962
+Main thread - time: 0.003347
+ 
+------Test numbers------
+* No Threads: [4] 
+* Mode: [numbers]
+Thread 0 - time: 0.002246
+Thread 1 - time: 0.002222
+Thread 2 - time: 0.003057
+Thread 3 - time: 0.003176
+Main thread - time: 0.003450
+ 
+------Test numbers------
+* No Threads: [8] 
+* Mode: [numbers]
+Thread 0 - time: 0.002616
+Thread 1 - time: 0.002689
+Thread 2 - time: 0.002773
+Thread 3 - time: 0.002849
+Thread 4 - time: 0.002717
+Thread 5 - time: 0.002696
+Thread 6 - time: 0.002829
+Thread 7 - time: 0.002732
+Main thread - time: 0.003198
+ 
+------Test numbers------
+* No Threads: [16] 
+* Mode: [numbers]
+Thread 0 - time: 0.002464
+Thread 1 - time: 0.002536
+Thread 2 - time: 0.003146
+Thread 3 - time: 0.002588
+Thread 4 - time: 0.002548
+Thread 5 - time: 0.003144
+Thread 6 - time: 0.002564
+Thread 7 - time: 0.001508
+Thread 8 - time: 0.001658
+Thread 9 - time: 0.002610
+Thread 10 - time: 0.002522
+Thread 11 - time: 0.001530
+Thread 12 - time: 0.002555
+Thread 13 - time: 0.002494
+Thread 14 - time: 0.001699
+Thread 15 - time: 0.002547
+Main thread - time: 0.006331
+ 
